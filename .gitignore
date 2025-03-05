@@ -1,0 +1,5 @@
+.nextflow*
+.nf-test*
+.conda*
+test_output/*
+.DS_store
