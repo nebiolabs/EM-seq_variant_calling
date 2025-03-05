@@ -1,0 +1,27 @@
+nextflow_pipeline {
+
+    name "Test Workflow main.nf"
+    script "main.nf"
+    tag "pipeline"
+
+    test("Pipeline test with small dataset") {
+
+        when {
+            params.fasta = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr4_1_5000.fa"
+            params.fai = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr4_1_5000.fa.fai"
+            params.bams = "${projectDir}/tests/fixtures/bams/200ng-V2-{1,2}.md.bam"
+        }
+
+        then {            
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.trace).match() 
+                }
+            )
+
+        }
+
+    }
+
+}
