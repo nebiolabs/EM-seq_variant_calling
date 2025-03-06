@@ -1,6 +1,7 @@
 process calcMD {
     label 'process_low'
     conda 'bioconda::samtools=1.21'
+    tag "$library"
 
     input:
     tuple val(library), path(bam), path(index)
