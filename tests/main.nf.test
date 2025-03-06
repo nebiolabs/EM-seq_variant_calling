@@ -7,16 +7,25 @@ nextflow_pipeline {
     test("Pipeline test with small dataset") {
 
         when {
-            params.fasta = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr4_1_6000.fa"
-            params.fai = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr4_1_6000.fa.fai"
-            params.bams = "${projectDir}/tests/fixtures/bams/200ng-V2-{1,2}.md.bam"
+            params.fasta = "${projectDir}/t2t_2.0_chr21.fa"
+            params.fai = "${projectDir}/t2t_2.0_chr21.fa.fai"
+            params.bams = "${projectDir}/200ng-V2-{1,2}.md.bam"
         }
 
-        then {            
+        then {           
+
+            def calcmd_bam = path("${launchDir}/test_output/calcMD/200ng-V2-1.md.calcmd.bam").md5
+            def masked_bam = path("${launchDir}/test_output/revelio/200ng-V2-1.md.masked.bam").md5
+            def strelka_vcf = path("${launchDir}/test_output/strelka/200ng-V2-1.md.strelka_vcf.gz").vcf.summary
 
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.trace).match() 
+                { assert snapshot(
+                    workflow.trace,
+                    ["calcmd_bam", calcmd_bam],
+                    ["masked_bam", masked_bam],
+                    ["strelka_vcf", strelka_vcf]
+                                        ).match()
                 }
             )
 

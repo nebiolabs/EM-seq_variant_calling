@@ -3,14 +3,26 @@
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 5,
-                "tasksSucceeded": 5
-            }
+                "tasksCount": 7,
+                "tasksSucceeded": 7
+            },
+            [
+                "calcmd_bam",
+                "0845d16133db6658edc601212dcc1be5"
+            ],
+            [
+                "masked_bam",
+                "67f99c363152733dd073d8ec406c2d9c"
+            ],
+            [
+                "strelka_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=23, phased=false, phasedAutodetect=false]"
+            ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.2"
         },
-        "timestamp": "2025-03-06T10:31:10.628849283"
+        "timestamp": "2025-03-06T17:38:29.80075705"
     }
 }
