@@ -1,0 +1,16 @@
+{
+    "Pipeline test with small dataset": {
+        "content": [
+            {
+                "tasksFailed": 0,
+                "tasksCount": 5,
+                "tasksSucceeded": 5
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2025-03-06T10:31:10.628849283"
+    }
+}
