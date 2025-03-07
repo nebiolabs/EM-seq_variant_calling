@@ -7,9 +7,9 @@ nextflow_pipeline {
     test("Pipeline test with small dataset") {
 
         when {
-            params.fasta = "${projectDir}/t2t_2.0_chr21.fa"
-            params.fai = "${projectDir}/t2t_2.0_chr21.fa.fai"
-            params.bams = "${projectDir}/200ng-V2-{1,2}.md.bam"
+            params.fasta = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr21.fa"
+            params.fai = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr21.fa.fai"
+            params.bams = "${projectDir}/tests/fixtures/bams/200ng-V2-{1,2}.md.bam"
         }
 
         then {           
