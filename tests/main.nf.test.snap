@@ -3,8 +3,8 @@
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 7,
-                "tasksSucceeded": 7
+                "tasksCount": 9,
+                "tasksSucceeded": 9
             },
             [
                 "calcmd_bam",
@@ -17,12 +17,24 @@
             [
                 "strelka_vcf",
                 "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=23, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=23, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_summary",
+                [
+                    "Type,Filter,TRUTH.TOTAL,TRUTH.TP,TRUTH.FN,QUERY.TOTAL,QUERY.FP,QUERY.UNK,FP.gt,FP.al,METRIC.Recall,METRIC.Precision,METRIC.Frac_NA,METRIC.F1_Score,TRUTH.TOTAL.TiTv_ratio,QUERY.TOTAL.TiTv_ratio,TRUTH.TOTAL.het_hom_ratio,QUERY.TOTAL.het_hom_ratio",
+                    "SNP,ALL,1,1,0,23,22,0,0,0,1.0,0.043477999999999996,0.0,0.083333,0.0,0.5333333333333333,0.0,22.0",
+                    "SNP,PASS,1,1,0,4,3,0,0,0,1.0,0.25,0.0,0.4,0.0,0.0,0.0,3.0"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.2"
         },
-        "timestamp": "2025-03-06T17:38:29.80075705"
+        "timestamp": "2025-03-10T12:26:44.817325844"
     }
 }
