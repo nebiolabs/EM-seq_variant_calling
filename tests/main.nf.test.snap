@@ -3,8 +3,8 @@
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 9,
-                "tasksSucceeded": 9
+                "tasksCount": 11,
+                "tasksSucceeded": 11
             },
             [
                 "calcmd_bam",
@@ -29,12 +29,19 @@
                     "SNP,ALL,1,1,0,23,22,0,0,0,1.0,0.043477999999999996,0.0,0.083333,0.0,0.5333333333333333,0.0,22.0",
                     "SNP,PASS,1,1,0,4,3,0,0,0,1.0,0.25,0.0,0.4,0.0,0.0,0.0,3.0"
                 ]
+            ],
+            [
+                "snp_breakdown",
+                [
+                    "Count Ref Alt Type",
+                    "1 G C Correct"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.2"
         },
-        "timestamp": "2025-03-10T12:26:44.817325844"
+        "timestamp": "2025-04-15T11:26:45.336212952"
     }
 }
