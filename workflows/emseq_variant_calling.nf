@@ -35,6 +35,7 @@ include {  calcMD  } from '../modules/local/calc_md.nf'
 include {  revelio  } from '../modules/local/revelio.nf'
 include {  strelka  } from '../modules/local/strelka.nf'
 include {  happyConcordance  } from '../modules/local/happy_concordance.nf'
+include {  parseHappyVcf  } from '../modules/local/parse_happy_vcf.nf'
 
 workflow emseq_variant_calling {
     
@@ -73,7 +74,7 @@ workflow emseq_variant_calling {
             )
         
     //
-    // Module: Run happy to compare variants to a "truth" vcf
+    // Module: Run hap.py to compare variants to a "truth" vcf
     //
         if (params.run_happy) {
 
@@ -84,6 +85,14 @@ workflow emseq_variant_calling {
                 fai,
                 happy_truth_vcf,
                 happy_truth_tbi
+            )
+    
+    //
+    // Module: Parse hap.py vcf output to break down SNPs by ref/alt bases.
+    //
+            parseHappyVcf(
+                happyConcordance.out.vcf,
+                happy_bed // analyze breakdown in called regions if provided
             )
         }
 

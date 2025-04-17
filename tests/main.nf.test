@@ -23,6 +23,7 @@ nextflow_pipeline {
             def strelka_vcf = path("${launchDir}/test_output/strelka/200ng-V2-1.md.strelka_vcf.gz").vcf.summary
             def happy_vcf = path("${launchDir}/test_output/happy/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
             def happy_summary = path("${launchDir}/test_output/happy/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
+            def snp_breakdown = path("${launchDir}/test_output/happy/200ng-V2-1.md.happy.snp_mutations.txt").text.tokenize('\n')
 
             assertAll(
                 { assert workflow.success },
@@ -32,7 +33,8 @@ nextflow_pipeline {
                     ["masked_bam", masked_bam],
                     ["strelka_vcf", strelka_vcf],
                     ["happy_vcf", happy_vcf],
-                    ["happy_summary", happy_summary]
+                    ["happy_summary", happy_summary],
+                    ["snp_breakdown", snp_breakdown]
                                         ).match()
                 }
             )
