@@ -3,8 +3,8 @@
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 11,
-                "tasksSucceeded": 11
+                "tasksCount": 15,
+                "tasksSucceeded": 15
             },
             [
                 "calcmd_bam",
@@ -19,15 +19,35 @@
                 "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=23, phased=false, phasedAutodetect=false]"
             ],
             [
-                "happy_vcf",
+                "freebayes_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=11, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_vcf_strelka",
                 "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=23, phased=false, phasedAutodetect=false]"
             ],
             [
-                "happy_summary",
+                "happy_summary_strelka",
                 [
                     "Type,Filter,TRUTH.TOTAL,TRUTH.TP,TRUTH.FN,QUERY.TOTAL,QUERY.FP,QUERY.UNK,FP.gt,FP.al,METRIC.Recall,METRIC.Precision,METRIC.Frac_NA,METRIC.F1_Score,TRUTH.TOTAL.TiTv_ratio,QUERY.TOTAL.TiTv_ratio,TRUTH.TOTAL.het_hom_ratio,QUERY.TOTAL.het_hom_ratio",
-                    "SNP,ALL,1,1,0,23,22,0,0,0,1.0,0.043477999999999996,0.0,0.083333,0.0,0.5333333333333333,0.0,22.0",
-                    "SNP,PASS,1,1,0,4,3,0,0,0,1.0,0.25,0.0,0.4,0.0,0.0,0.0,3.0"
+                    "INDEL,ALL,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "INDEL,PASS,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "SNP,ALL,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333",
+                    "SNP,PASS,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333"
+                ]
+            ],
+            [
+                "happy_vcf_freebayes",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=16, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_summary_freebayes",
+                [
+                    "Type,Filter,TRUTH.TOTAL,TRUTH.TP,TRUTH.FN,QUERY.TOTAL,QUERY.FP,QUERY.UNK,FP.gt,FP.al,METRIC.Recall,METRIC.Precision,METRIC.Frac_NA,METRIC.F1_Score,TRUTH.TOTAL.TiTv_ratio,QUERY.TOTAL.TiTv_ratio,TRUTH.TOTAL.het_hom_ratio,QUERY.TOTAL.het_hom_ratio",
+                    "INDEL,ALL,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "INDEL,PASS,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "SNP,ALL,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333",
+                    "SNP,PASS,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333"
                 ]
             ],
             [
@@ -42,6 +62,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.2"
         },
-        "timestamp": "2025-04-15T11:26:45.336212952"
+        "timestamp": "2025-04-17T16:25:23.194977669"
     }
 }

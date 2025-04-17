@@ -34,7 +34,9 @@ include {  downloadRevelio  } from '../modules/local/download_revelio.nf'
 include {  calcMD  } from '../modules/local/calc_md.nf'
 include {  revelio  } from '../modules/local/revelio.nf'
 include {  strelka  } from '../modules/local/strelka.nf'
-include {  happyConcordance  } from '../modules/local/happy_concordance.nf'
+include {  freebayes  } from '../modules/local/freebayes.nf'
+include {  happyConcordance as happyConcordanceStrelka; 
+           happyConcordance as happyConcordanceFreebayes  } from '../modules/local/happy_concordance.nf'
 include {  parseHappyVcf  } from '../modules/local/parse_happy_vcf.nf'
 
 workflow emseq_variant_calling {
@@ -72,13 +74,13 @@ workflow emseq_variant_calling {
             fai,
             target_bed // call regions (optional)
             )
-        
+    
     //
     // Module: Run hap.py to compare variants to a "truth" vcf
     //
         if (params.run_happy) {
 
-            happyConcordance(
+            happyConcordanceStrelka(
                 strelka.out.vcf,
                 happy_bed, // comparison regions (optional)
                 fasta,
@@ -91,13 +93,39 @@ workflow emseq_variant_calling {
     // Module: Parse hap.py vcf output to break down SNPs by ref/alt bases.
     //
             parseHappyVcf(
-                happyConcordance.out.vcf,
+                happyConcordanceStrelka.out.vcf,
                 happy_bed // analyze breakdown in called regions if provided
             )
         }
 
     }
 
+    //
+    // Module: Run freebayes to call germline variants
+    //
+    if (params.run_freebayes) {
+        freebayes (
+            revelio.out.masked,
+            fasta,
+            fai,
+            target_bed // call regions (optional)
+            )
+        
+    //
+    // Module: Run hap.py to compare variants to a "truth" vcf
+    //
+        if (params.run_happy) {
+
+            happyConcordanceFreebayes(
+                freebayes.out.filtered_vcf,
+                happy_bed, // comparison regions (optional)
+                fasta,
+                fai,
+                happy_truth_vcf,
+                happy_truth_tbi
+            )
+        }
+    }
 }
 
 workflow {

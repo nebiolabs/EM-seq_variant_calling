@@ -1,7 +1,6 @@
 process happyConcordance {
     label 'process_high'
     conda "bioconda::hap.py=0.3.15"
-    publishDir "$params.outdir/happy/", mode: 'copy'
     tag { library }
 
     input:
