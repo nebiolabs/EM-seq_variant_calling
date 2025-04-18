@@ -1,6 +1,5 @@
 process parseHappyVcf {
     label 'process_single'
-    publishDir "$params.outdir/happy/", mode: 'copy'
     tag { library }
 
     input:
@@ -39,26 +38,3 @@ process parseHappyVcf {
 
     """
 }
-// echo "Count Ref Alt Type" > !{library}.happy.snp_mutations.txt
-
-//     if [[ -n "!{happy_bed}" ]]; then
-//         regions_opt='grep "CONF" |'
-//     else
-//         regions_opt=''
-//     fi
-
-//     zcat *.vcf.gz | grep "SNP" | $regions_opt grep -v NoPass | grep TP |\
-//     awk -v FS='\t' -v OFS=' ' '{print \$4, \$5, "Correct"}' \
-//     | sort | uniq -c |sed 's/^[ \\t]*//' >> !{library}.happy.snp_mutations.txt
-
-//     zcat *.vcf.gz | grep "SNP" | $regions_opt grep -v NoPass | grep FN | grep -v NOCALL |\
-//     awk -v FS='\t' -v OFS=' ' '{print \$4, \$5, "Incorrect"}' \
-//     | sort | uniq -c |sed 's/^[ \\t]*//' >> !{library}.happy.snp_mutations.txt
-
-//     zcat *.vcf.gz | grep "SNP" | $regions_opt grep -v NoPass | grep FN | grep NOCALL |\
-//     awk -v FS='\t' -v OFS=' ' '{print \$4, \$5, "Missed"}' \
-//     | sort | uniq -c |sed 's/^[ \\t]*//' >> !{library}.happy.snp_mutations.txt
-
-//     zcat *.vcf.gz | grep "SNP" | $regions_opt grep NoPass | grep TP |\
-//     awk -v FS='\t' -v OFS=' ' '{print \$4, \$5, "Missed"}' \
-//     | sort | uniq -c |sed 's/^[ \\t]*//' >> !{library}.happy.snp_mutations.txt

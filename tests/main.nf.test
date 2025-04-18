@@ -21,9 +21,12 @@ nextflow_pipeline {
             def calcmd_bam = path("${launchDir}/test_output/calcMD/200ng-V2-1.md.calcmd.bam").md5
             def masked_bam = path("${launchDir}/test_output/revelio/200ng-V2-1.md.masked.bam").md5
             def strelka_vcf = path("${launchDir}/test_output/strelka/200ng-V2-1.md.strelka_vcf.gz").vcf.summary
-            def happy_vcf = path("${launchDir}/test_output/happy/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
-            def happy_summary = path("${launchDir}/test_output/happy/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
-            def snp_breakdown = path("${launchDir}/test_output/happy/200ng-V2-1.md.happy.snp_mutations.txt").text.tokenize('\n')
+            def freebayes_vcf = path("${launchDir}/test_output/freebayes/200ng-V2-1.md.flt.vcf.gz").vcf.summary
+            def happy_vcf_strelka = path("${launchDir}/test_output/happyConcordanceStrelka/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
+            def happy_summary_strelka = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
+            def happy_vcf_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
+            def happy_summary_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
+            def snp_breakdown = path("${launchDir}/test_output/parseHappyVcf/200ng-V2-1.md.happy.snp_mutations.txt").text.tokenize('\n')
 
             assertAll(
                 { assert workflow.success },
@@ -32,8 +35,11 @@ nextflow_pipeline {
                     ["calcmd_bam", calcmd_bam],
                     ["masked_bam", masked_bam],
                     ["strelka_vcf", strelka_vcf],
-                    ["happy_vcf", happy_vcf],
-                    ["happy_summary", happy_summary],
+                    ["freebayes_vcf", freebayes_vcf],
+                    ["happy_vcf_strelka", happy_vcf_strelka],
+                    ["happy_summary_strelka", happy_summary_strelka],
+                    ["happy_vcf_freebayes", happy_vcf_freebayes],
+                    ["happy_summary_freebayes", happy_summary_freebayes],
                     ["snp_breakdown", snp_breakdown]
                                         ).match()
                 }
