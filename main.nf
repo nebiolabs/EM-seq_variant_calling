@@ -22,7 +22,7 @@ nextflow.enable.dsl = 2
 include { emseq_variant_calling } from './workflows/emseq_variant_calling.nf'
 
 //
-// WORKFLOW: Run main nf-core/niceseq analysis pipeline
+// WORKFLOW: Run main analysis pipeline
 //
 workflow variant_calling {
     emseq_variant_calling()
