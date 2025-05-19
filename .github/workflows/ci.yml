@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         NXF_VER:
-          - "23.10.0"
+          - "25.04.2"
     steps:
       - name: Check out pipeline code
         uses: actions/checkout@v4
