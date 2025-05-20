@@ -22,12 +22,13 @@ index_format = Channel.value(params.index_format) // output format, either bai o
 tmpdir = Channel.value(params.tmpdir)
 
 // Variant calling inputs
-target_bed = Channel.value(params.target_bed) // optional
+// Optional input for regions to call, e.g. for target enrichment
+target_bed = Channel.value(params.target_bed ?: '')
 
-// Hap.py concordance inputs
-happy_truth_vcf = Channel.fromPath(params.happy_truth_vcf,  checkIfExists: true)
-happy_truth_tbi = Channel.fromPath(params.happy_truth_vcf+'.tbi',  checkIfExists: true)
-happy_bed = Channel.value(params.happy_bed)
+// Hap.py concordance inputs, only if run_happy is true
+happy_truth_vcf = params.run_happy ? Channel.fromPath(params.happy_truth_vcf, checkIfExists: true) : Channel.empty()
+happy_truth_tbi = params.run_happy ? Channel.fromPath(params.happy_truth_vcf + '.tbi', checkIfExists: true) : Channel.empty()
+happy_bed       = Channel.value(params.happy_bed ?: '') // optional regions to analyze, e.g. confident regions or target enrichment regions
 
 // Local Modules:
 include {  downloadRevelio  } from '../modules/local/download_revelio.nf'

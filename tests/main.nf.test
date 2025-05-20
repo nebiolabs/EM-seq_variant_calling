@@ -49,4 +49,49 @@ nextflow_pipeline {
 
     }
 
+    test("Pipeline test without optional inputs") {
+
+        when {
+            params.fasta = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr21.fa"
+            params.fai = "${projectDir}/tests/fixtures/genome/t2t_2.0_chr21.fa.fai"
+            params.bams = "${projectDir}/tests/fixtures/bams/200ng-V2-{1,2}.md.bam"
+            params.target_bed = null
+            params.happy_truth_vcf = "${projectDir}/tests/fixtures/vcf/truth.vcf.gz"
+            params.happy_bed = null
+            
+        }
+
+        then {           
+
+            def calcmd_bam = path("${launchDir}/test_output/calcMD/200ng-V2-1.md.calcmd.bam").md5
+            def masked_bam = path("${launchDir}/test_output/revelio/200ng-V2-1.md.masked.bam").md5
+            def strelka_vcf = path("${launchDir}/test_output/strelka/200ng-V2-1.md.strelka_vcf.gz").vcf.summary
+            def freebayes_vcf = path("${launchDir}/test_output/freebayes/200ng-V2-1.md.flt.vcf.gz").vcf.summary
+            def happy_vcf_strelka = path("${launchDir}/test_output/happyConcordanceStrelka/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
+            def happy_summary_strelka = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
+            def happy_vcf_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
+            def happy_summary_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
+            def snp_breakdown = path("${launchDir}/test_output/parseHappyVcf/200ng-V2-1.md.happy.snp_mutations.txt").text.tokenize('\n')
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.trace,
+                    ["calcmd_bam", calcmd_bam],
+                    ["masked_bam", masked_bam],
+                    ["strelka_vcf", strelka_vcf],
+                    ["freebayes_vcf", freebayes_vcf],
+                    ["happy_vcf_strelka", happy_vcf_strelka],
+                    ["happy_summary_strelka", happy_summary_strelka],
+                    ["happy_vcf_freebayes", happy_vcf_freebayes],
+                    ["happy_summary_freebayes", happy_summary_freebayes],
+                    ["snp_breakdown", snp_breakdown]
+                                        ).match()
+                }
+            )
+
+        }
+
+    }
+
 }

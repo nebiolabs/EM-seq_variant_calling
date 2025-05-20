@@ -13,19 +13,18 @@ process strelka {
     tuple val(library), path("*.strelka_vcf.gz"), path("*.strelka_vcf.gz.tbi"), emit: vcf
 
     script:
-
+    def target_regions_opt = (target_bed && file(target_bed).exists()) ? '--callRegions target.bed.gz' : ''
     """
-    if [ -f ${target_bed} ]; then
-        ln -s ${target_bed} target.bed
+    if [ -n "${target_bed}" ] && [ -f "${target_bed}" ]; then
+        ln -s "${target_bed}" target.bed
         bgzip -c target.bed > target.bed.gz
         tabix -p bed "target.bed.gz"
-        target_regions_opt="--callRegions target.bed.gz "
     fi
 
     configureStrelkaGermlineWorkflow.py \
     --bam "${bam}" \
     --referenceFasta "${fasta}" \
-    \$target_regions_opt \
+    ${target_regions_opt} \
     --runDir strelka 
     # execution on a single local machine with N parallel jobs, sge integration does not work on our cluster
     strelka/runWorkflow.py -m local -j ${task.cpus}
