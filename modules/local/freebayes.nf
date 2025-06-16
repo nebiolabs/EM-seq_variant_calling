@@ -14,7 +14,7 @@ process freebayes {
     tuple val(library), path("*.flt.vcf.gz"), path("*.flt.vcf.gz.tbi"), emit: filtered_vcf
 
     script:
-
+    // TO DO: incorporate optional target_bed call regions
     """
     freebayes-parallel <(fasta_generate_regions.py ${fai} 100000) $task.cpus \\
         -f $fasta \\

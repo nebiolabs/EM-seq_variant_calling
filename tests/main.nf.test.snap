@@ -59,9 +59,74 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.04.2"
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.1"
         },
-        "timestamp": "2025-04-17T16:25:23.194977669"
+        "timestamp": "2025-05-20T13:36:17.023260625"
+    },
+    "Pipeline test without optional inputs": {
+        "content": [
+            {
+                "tasksFailed": 0,
+                "tasksCount": 15,
+                "tasksSucceeded": 15
+            },
+            [
+                "calcmd_bam",
+                "0845d16133db6658edc601212dcc1be5"
+            ],
+            [
+                "masked_bam",
+                "67f99c363152733dd073d8ec406c2d9c"
+            ],
+            [
+                "strelka_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=23, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "freebayes_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=11, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_vcf_strelka",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=23, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_summary_strelka",
+                [
+                    "Type,Filter,TRUTH.TOTAL,TRUTH.TP,TRUTH.FN,QUERY.TOTAL,QUERY.FP,QUERY.UNK,FP.gt,FP.al,METRIC.Recall,METRIC.Precision,METRIC.Frac_NA,METRIC.F1_Score,TRUTH.TOTAL.TiTv_ratio,QUERY.TOTAL.TiTv_ratio,TRUTH.TOTAL.het_hom_ratio,QUERY.TOTAL.het_hom_ratio",
+                    "INDEL,ALL,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "INDEL,PASS,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "SNP,ALL,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333",
+                    "SNP,PASS,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333"
+                ]
+            ],
+            [
+                "happy_vcf_freebayes",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=16, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_summary_freebayes",
+                [
+                    "Type,Filter,TRUTH.TOTAL,TRUTH.TP,TRUTH.FN,QUERY.TOTAL,QUERY.FP,QUERY.UNK,FP.gt,FP.al,METRIC.Recall,METRIC.Precision,METRIC.Frac_NA,METRIC.F1_Score,TRUTH.TOTAL.TiTv_ratio,QUERY.TOTAL.TiTv_ratio,TRUTH.TOTAL.het_hom_ratio,QUERY.TOTAL.het_hom_ratio",
+                    "INDEL,ALL,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "INDEL,PASS,0,0,0,2,2,0,0,1,0.0,0.0,0.0,,,,,",
+                    "SNP,ALL,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333",
+                    "SNP,PASS,1,1,0,14,13,0,0,1,1.0,0.07142899999999999,0.0,0.13333299999999998,0.0,0.75,0.0,1.3333333333333333"
+                ]
+            ],
+            [
+                "snp_breakdown",
+                [
+                    "Count Ref Alt Type",
+                    "1 G C Correct"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.1"
+        },
+        "timestamp": "2025-05-20T13:39:05.639276115"
     }
 }
