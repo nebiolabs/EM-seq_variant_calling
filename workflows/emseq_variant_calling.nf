@@ -33,6 +33,7 @@ happy_bed       = Channel.value(params.happy_bed ?: '') // optional regions to a
 // Local Modules:
 include {  downloadRevelio  } from '../modules/local/download_revelio.nf'
 include {  calcMD  } from '../modules/local/calc_md.nf'
+include {  fgbioClipBam  } from '../modules/local/fgbio_clip_bam.nf'
 include {  revelio  } from '../modules/local/revelio.nf'
 include {  strelka  } from '../modules/local/strelka.nf'
 include {  freebayes  } from '../modules/local/freebayes.nf'
@@ -57,10 +58,17 @@ workflow emseq_variant_calling {
         )
 
     //
+    // Module: Optionally clip overlapping reads with fgbio ClipBam before Revelio
+    //
+    if (params.run_clip_bam) {
+        fgbioClipBam(calcMD.out.calcmd_bam)
+    }
+
+    //
     // Module: Run Revelio to mask possibly converted bases by setting BQ to 0
     //
     revelio (
-        calcMD.out.calcmd_bam,
+        params.run_clip_bam ? fgbioClipBam.out : calcMD.out.calcmd_bam,
         downloadRevelio.out,
         tmpdir
         )
