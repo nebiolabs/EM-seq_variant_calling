@@ -39,6 +39,11 @@ jobs:
         with:
           version: 0.9.0
 
+      - name: Install Singularity
+        uses: eWaterCycle/setup-singularity@v7
+        with:
+          singularity-version: 3.8.3
+
       - name: Run pipeline with test data
         run: |
           nf-test test

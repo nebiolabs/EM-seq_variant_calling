@@ -3,8 +3,8 @@
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 15,
-                "tasksSucceeded": 15
+                "tasksCount": 19,
+                "tasksSucceeded": 19
             },
             [
                 "calcmd_bam",
@@ -56,20 +56,28 @@
                     "Count Ref Alt Type",
                     "1 G C Correct"
                 ]
+            ],
+            [
+                "deepvariant_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=60, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_vcf_deepvariant",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=13, phased=false, phasedAutodetect=false]"
             ]
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.2"
         },
-        "timestamp": "2025-05-20T13:36:17.023260625"
+        "timestamp": "2026-04-14T15:43:10.033366736"
     },
     "Pipeline test without optional inputs": {
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 15,
-                "tasksSucceeded": 15
+                "tasksCount": 19,
+                "tasksSucceeded": 19
             },
             [
                 "calcmd_bam",
@@ -121,12 +129,20 @@
                     "Count Ref Alt Type",
                     "1 G C Correct"
                 ]
+            ],
+            [
+                "deepvariant_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=60, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_vcf_deepvariant",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=13, phased=false, phasedAutodetect=false]"
             ]
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.2"
         },
-        "timestamp": "2025-05-20T13:39:05.639276115"
+        "timestamp": "2026-04-14T15:47:22.184920401"
     }
 }

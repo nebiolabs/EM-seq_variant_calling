@@ -38,8 +38,10 @@ include {  revelio  } from '../modules/local/revelio.nf'
 include {  strelka  } from '../modules/local/strelka.nf'
 include {  freebayes  } from '../modules/local/freebayes.nf'
 include {  happyConcordance as happyConcordanceStrelka; 
-           happyConcordance as happyConcordanceFreebayes  } from '../modules/local/happy_concordance.nf'
+           happyConcordance as happyConcordanceFreebayes;
+           happyConcordance as happyConcordanceDeepvariant;  } from '../modules/local/happy_concordance.nf'
 include {  parseHappyVcf  } from '../modules/local/parse_happy_vcf.nf'
+include {  deepvariantCustom  } from '../modules/local/deepvariant_custom.nf'
 
 workflow emseq_variant_calling {
     
@@ -119,7 +121,7 @@ workflow emseq_variant_calling {
             fai,
             target_bed // call regions (optional)
             )
-        
+
     //
     // Module: Run hap.py to compare variants to a "truth" vcf
     //
@@ -127,6 +129,29 @@ workflow emseq_variant_calling {
 
             happyConcordanceFreebayes(
                 freebayes.out.filtered_vcf,
+                happy_bed, // comparison regions (optional)
+                fasta,
+                fai,
+                happy_truth_vcf,
+                happy_truth_tbi
+            )
+        }
+    }
+
+    //
+    // Module: Run DeepVariant with custom model
+    //
+    if (params.run_deepvariant) {
+        deepvariantCustom(
+            revelio.out.masked,
+            fasta,
+            fai
+        )
+
+        if (params.run_happy) {
+
+            happyConcordanceDeepvariant(
+                deepvariantCustom.out.vcf,
                 happy_bed, // comparison regions (optional)
                 fasta,
                 fai,
