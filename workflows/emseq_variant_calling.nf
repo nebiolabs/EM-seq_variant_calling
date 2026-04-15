@@ -25,6 +25,14 @@ tmpdir = Channel.value(params.tmpdir)
 // Optional input for regions to call, e.g. for target enrichment
 target_bed = Channel.value(params.target_bed ?: '')
 
+// DeepVariant checkpoint — split single param into staged dir + name; [] and '' when unused
+checkpoint_dir  = (params.run_deepvariant && params.deepvariant_checkpoint)
+    ? Channel.value(file(params.deepvariant_checkpoint).parent)
+    : Channel.value([])
+checkpoint_name = (params.run_deepvariant && params.deepvariant_checkpoint)
+    ? Channel.value(file(params.deepvariant_checkpoint).name)
+    : Channel.value('')
+
 // Hap.py concordance inputs, only if run_happy is true
 happy_truth_vcf = params.run_happy ? Channel.fromPath(params.happy_truth_vcf, checkIfExists: true) : Channel.empty()
 happy_truth_tbi = params.run_happy ? Channel.fromPath(params.happy_truth_vcf + '.tbi', checkIfExists: true) : Channel.empty()
@@ -145,7 +153,9 @@ workflow emseq_variant_calling {
         deepvariantCustom(
             revelio.out.masked,
             fasta,
-            fai
+            fai,
+            checkpoint_dir,
+            checkpoint_name
         )
 
         if (params.run_happy) {
