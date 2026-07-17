@@ -30,7 +30,6 @@ process deepvariantCustom {
         --ref ${fasta} \\
         --reads ${bam} \\
         --output_vcf ${library}.deepvariant.vcf.gz \\
-        --num_shards ${task.cpus} \\
-
-    """
+        --num_shards ${task.cpus}
+"""
 }
