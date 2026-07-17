@@ -25,13 +25,7 @@ tmpdir = Channel.value(params.tmpdir)
 // Optional input for regions to call, e.g. for target enrichment
 target_bed = Channel.value(params.target_bed ?: '')
 
-// DeepVariant checkpoint — split single param into staged dir + name; [] and '' when unused
-checkpoint_dir  = (params.run_deepvariant && params.deepvariant_checkpoint)
-    ? Channel.value(file(params.deepvariant_checkpoint).parent)
-    : Channel.value([])
-checkpoint_name = (params.run_deepvariant && params.deepvariant_checkpoint)
-    ? Channel.value(file(params.deepvariant_checkpoint).name)
-    : Channel.value('')
+// DeepVariant checkpoint — resolved to (dir, name): local override, else Zenodo fetch by mode.
 
 // Hap.py concordance inputs, only if run_happy is true
 happy_truth_vcf = params.run_happy ? Channel.fromPath(params.happy_truth_vcf, checkIfExists: true) : Channel.empty()
@@ -50,6 +44,7 @@ include {  happyConcordance as happyConcordanceStrelka;
            happyConcordance as happyConcordanceDeepvariant;  } from '../modules/local/happy_concordance.nf'
 include {  parseHappyVcf  } from '../modules/local/parse_happy_vcf.nf'
 include {  deepvariantCustom  } from '../modules/local/deepvariant_custom.nf'
+include {  resolveDeepvariantCheckpoint  } from '../modules/local/deepvariant_checkpoint.nf'
 
 workflow emseq_variant_calling {
     
@@ -150,12 +145,12 @@ workflow emseq_variant_calling {
     // Module: Run DeepVariant with custom model
     //
     if (params.run_deepvariant) {
+        ck = resolveDeepvariantCheckpoint()
         deepvariantCustom(
             revelio.out.masked,
             fasta,
             fai,
-            checkpoint_dir,
-            checkpoint_name
+            ck.checkpoint
         )
 
         if (params.run_happy) {
