@@ -27,6 +27,8 @@ nextflow_pipeline {
             def happy_vcf_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
             def happy_summary_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
             def snp_breakdown = path("${launchDir}/test_output/parseHappyVcf/200ng-V2-1.md.happy.snp_mutations.txt").text.tokenize('\n')
+            def deepvariant_vcf = path("${launchDir}/test_output/deepvariantCustom/200ng-V2-1.md.deepvariant.vcf.gz").vcf.summary
+            def happy_vcf_deepvariant = path("${launchDir}/test_output/happyConcordanceDeepvariant/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
 
             assertAll(
                 { assert workflow.success },
@@ -40,7 +42,9 @@ nextflow_pipeline {
                     ["happy_summary_strelka", happy_summary_strelka],
                     ["happy_vcf_freebayes", happy_vcf_freebayes],
                     ["happy_summary_freebayes", happy_summary_freebayes],
-                    ["snp_breakdown", snp_breakdown]
+                    ["snp_breakdown", snp_breakdown],
+                    ["deepvariant_vcf", deepvariant_vcf],
+                    ["happy_vcf_deepvariant", happy_vcf_deepvariant]
                                         ).match()
                 }
             )
@@ -72,6 +76,8 @@ nextflow_pipeline {
             def happy_vcf_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
             def happy_summary_freebayes = path("${launchDir}/test_output/happyConcordanceFreebayes/200ng-V2-1.md_vs_truth.vcf.happy.summary.csv").text.tokenize('\n')
             def snp_breakdown = path("${launchDir}/test_output/parseHappyVcf/200ng-V2-1.md.happy.snp_mutations.txt").text.tokenize('\n')
+            def deepvariant_vcf = path("${launchDir}/test_output/deepvariantCustom/200ng-V2-1.md.deepvariant.vcf.gz").vcf.summary
+            def happy_vcf_deepvariant = path("${launchDir}/test_output/happyConcordanceDeepvariant/200ng-V2-1.md_vs_truth.vcf.happy.vcf.gz").vcf.summary
 
             assertAll(
                 { assert workflow.success },
@@ -85,7 +91,9 @@ nextflow_pipeline {
                     ["happy_summary_strelka", happy_summary_strelka],
                     ["happy_vcf_freebayes", happy_vcf_freebayes],
                     ["happy_summary_freebayes", happy_summary_freebayes],
-                    ["snp_breakdown", snp_breakdown]
+                    ["snp_breakdown", snp_breakdown],
+                    ["deepvariant_vcf", deepvariant_vcf],
+                    ["happy_vcf_deepvariant", happy_vcf_deepvariant]
                                         ).match()
                 }
             )

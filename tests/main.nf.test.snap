@@ -3,8 +3,8 @@
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 15,
-                "tasksSucceeded": 15
+                "tasksCount": 20,
+                "tasksSucceeded": 20
             },
             [
                 "calcmd_bam",
@@ -54,22 +54,30 @@
                 "snp_breakdown",
                 [
                     "Count Ref Alt Type",
-                    "1 G C Correct"
+                    "1 G C NotPassed"
                 ]
+            ],
+            [
+                "deepvariant_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=60, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_vcf_deepvariant",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=4, phased=false, phasedAutodetect=false]"
             ]
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.2"
         },
-        "timestamp": "2025-05-20T13:36:17.023260625"
+        "timestamp": "2026-07-17T17:08:12.351084775"
     },
     "Pipeline test without optional inputs": {
         "content": [
             {
                 "tasksFailed": 0,
-                "tasksCount": 15,
-                "tasksSucceeded": 15
+                "tasksCount": 19,
+                "tasksSucceeded": 19
             },
             [
                 "calcmd_bam",
@@ -121,12 +129,20 @@
                     "Count Ref Alt Type",
                     "1 G C Correct"
                 ]
+            ],
+            [
+                "deepvariant_vcf",
+                "VcfFile [chromosomes=[chr21], sampleCount=1, variantCount=60, phased=false, phasedAutodetect=false]"
+            ],
+            [
+                "happy_vcf_deepvariant",
+                "VcfFile [chromosomes=[chr21], sampleCount=2, variantCount=4, phased=false, phasedAutodetect=false]"
             ]
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.2"
         },
-        "timestamp": "2025-05-20T13:39:05.639276115"
+        "timestamp": "2026-07-17T17:11:27.137540031"
     }
 }

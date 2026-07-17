@@ -13,7 +13,7 @@ process strelka {
     tuple val(library), path("*.strelka_vcf.gz"), path("*.strelka_vcf.gz.tbi"), emit: vcf
 
     script:
-    def target_regions_opt = (target_bed && file(target_bed).exists()) ? '--callRegions target.bed.gz' : ''
+    def target_regions_opt = (target_bed && file(target_bed).exists()) ? '--callRegions target.bed.gz --exome' : ''
     """
     if [ -n "${target_bed}" ] && [ -f "${target_bed}" ]; then
         ln -s "${target_bed}" target.bed
