@@ -6,10 +6,9 @@ Example masking scenarios. A. Without masking, the variant caller would interpre
 <p align="center"><img width="650" alt="image" src="https://github.com/user-attachments/assets/98c581c6-f597-4e13-9f3a-d7f4aeca6b3a" />
 </p>
 
-We utilize the tool [Revelio](https://github.com/bio15anu/revelio/blob/main/README.md)<sup>1</sup> in this pipeline, which allows us to pre-process our aligned bams for use with conventional variant callers.
+We utilize the tool [Revelio](https://github.com/bio15anu/revelio/blob/main/README.md)<sup>1</sup> in this pipeline, which allows us to pre-process our aligned bams for use with conventional variant callers. We have also trained custom [DeepVariant models](https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fzenodo.org%2Frecords%2F21416823&data=05%7C02%7Clblum%40neb.com%7C7eaa19bc1a7f44abded808dee45567d1%7C77cefbc6b3d64d6a9f740664881c384b%7C0%7C0%7C639199253068273777%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=XreGjEwqGnt6xlUoH6jv7X7qsbHB70oRIn6zgGwCjYc%3D&reserved=0) using NA12878 EM-seq libraries with unconverted libraries as a truth set for use with the WGS and WES modes. 
 
-<img width="1800" alt="image" src="https://github.com/user-attachments/assets/9e4f14a4-3a29-4ca7-ab7d-dc6a50476a94" />
-
+<img width="3000" height="450" alt="variant calling workflow" src="https://github.com/user-attachments/assets/06b4e1d1-6ce7-4348-a437-d7943e60fd0a" />
 
 
 1. Nunn A, Otto C, Fasold M, Stadler PF, Langenberger D. Manipulating base quality scores enables variant calling from bisulfite sequencing alignments using conventional bayesian approaches. BMC Genomics. 2022 Jun 28;23(1):477. doi: 10.1186/s12864-022-08691-6. PMID: 35764934; PMCID: PMC9237988.
